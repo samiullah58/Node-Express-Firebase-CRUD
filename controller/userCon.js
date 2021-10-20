@@ -6,7 +6,7 @@ const functionsObject = {
     //register a user
     async register(req,res,next){
 
-        let userObject = {name:req.body.name,email:req.body.email,country:req.body.country};
+        let userObject = {name:req.body.name,ratings:req.body.overallratings,history:req.body.history};
         var insert = await db.ref('/users').push(userObject);
         return res.send(insert);
 
@@ -16,7 +16,7 @@ const functionsObject = {
     //update a user record
     async update(req,res,next){
 
-        let updateObject = {name:req.body.name,email:req.body.email,country:req.body.country};
+        let updateObject = {name:req.body.name,ratings:req.body.ratings,history:req.body.history};
         var snapshot = db.ref(`/users/${req.body.id}`);
         const newSnapshot = await snapshot.update(updateObject);
         return res.send(newSnapshot);
